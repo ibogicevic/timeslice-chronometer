@@ -53,7 +53,6 @@ public class Main extends Application {
 		primaryStage.setTitle(APPNAME);
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		
 	}
 
 	public static void main(String[] args) {

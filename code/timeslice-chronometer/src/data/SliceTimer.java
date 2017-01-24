@@ -1,9 +1,10 @@
-package gui;
+package data;
 
+import gui.Main;
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Label;
 
-class SliceTimer extends AnimationTimer {
+public class SliceTimer extends AnimationTimer {
 
 	private long lastTime = 0;
 	private long time = 0;
