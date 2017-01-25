@@ -1,16 +1,12 @@
 package gui;
 
-import data.SliceTimer;
+import data.Slice;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 public class MainArea extends GridPane {
-
-	// demo timer
-	private SliceTimer timer = new SliceTimer();
-	public Label timerLabel = new Label();
-
+	
 	public MainArea() {
 		
 		// table styling
@@ -18,14 +14,30 @@ public class MainArea extends GridPane {
 		this.setHgap(5);
 		this.setVgap(5);
 		
+		// demo slices
+		Slice.sliceList.put("c", new Slice('c'));
+		Slice.sliceList.put("w", new Slice('w'));
+		Slice.sliceList.put("d", new Slice('d'));
+		updateSliceList();
+		Slice.setCurrentSlice('d');
+		Slice.getCurrentSlice().sliceTimer.start();
+	}
+	
+	public void updateSliceList() {
 		// table header
 		this.add(new Label("Key"), 1, 1);
 		this.add(new Label("Time"), 2, 1);
 		this.add(new Label("Counter"), 3, 1);
-
-		// demo timer
-		this.add(timerLabel, 2, 2);
-		// example run
-		timer.start();
+		// list of slices
+		int rowIndex = 1;
+		for (Slice slice : Slice.sliceList.values()) {
+			rowIndex++;
+			this.add(new Label(""+slice.triggerKey), 1, rowIndex);
+			this.add(slice.sliceTimerLabel, 2, rowIndex);
+			this.add(slice.sliceCounterLabel, 3, rowIndex);
+		}
+		// table footer
+		// TODO: total numbers
 	}
+	
 }

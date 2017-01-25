@@ -27,8 +27,8 @@ public class SliceTimer extends AnimationTimer {
 		time += delta;
 		lastTime += 100 * delta;
 		if (Main.getInstance() != null && Main.getInstance().mainArea != null) {
-			Label timerLabel = Main.getInstance().mainArea.timerLabel;
-			timerLabel.setText(Double.toString(time/10.));
+			Label currentSliceLabel = Slice.getCurrentSlice().sliceTimerLabel;
+			currentSliceLabel.setText(Double.toString(time/10.));
 		}
 	}
 };
