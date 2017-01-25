@@ -21,10 +21,6 @@ public class SliceMap extends TreeMap<String, Slice> {
 	public static SortedMap<String, Slice> getInstance() {
 		if (map == null) {
 			map = new TreeMap<String, Slice>();
-			// add demo slices
-			map.put("c", new Slice("c"));
-			map.put("w", new Slice("w"));
-			map.put("d", new Slice("d"));
 		}
 		return map;
 	}

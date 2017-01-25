@@ -10,14 +10,13 @@ public class Slice {
 	public String triggerKey;
 	public SliceTimer sliceTimer = new SliceTimer();
 	public long sliceCounter = 0;
-	public Label sliceTimerLabel = new Label("-");
-	public Label sliceCounterLabel = new Label("-");
+	public Label sliceTimerLabel = new Label("./.");
 	
 	/**
 	 * Private empty constructor (triggerKey must be set)
 	 */
 	@SuppressWarnings("unused")
-	private Slice() {	
+	private Slice() {
 	}
 	
 	/**
@@ -28,6 +27,5 @@ public class Slice {
 		// remember key
 		this.triggerKey = triggerKey;
 	}
-	
-	
+		
 }

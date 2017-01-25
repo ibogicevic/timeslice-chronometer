@@ -24,7 +24,7 @@ public class SliceTimer extends AnimationTimer {
 	@Override
 	public void handle(long now) {
 		long currentTime = System.currentTimeMillis();
-		long delta = (currentTime - lastTime) / 1000;
+		long delta = (currentTime - lastTime) / 100;
 		time += delta;
 		lastTime += 100 * delta;
 		if (Main.getInstance() != null && Main.getInstance().mainArea != null) {

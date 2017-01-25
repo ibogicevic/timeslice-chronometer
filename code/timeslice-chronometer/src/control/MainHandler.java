@@ -10,7 +10,7 @@ public class MainHandler {
 			
 		}
 		if (event.getCode().isLetterKey()) {
-			SliceHandler.handleLetterKey(event.getCode().toString().charAt(0));
+			SliceHandler.handleLetterKey(event.getCode().toString());
 		}
 	}
 
