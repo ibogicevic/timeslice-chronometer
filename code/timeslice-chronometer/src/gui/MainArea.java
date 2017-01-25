@@ -24,7 +24,7 @@ public class MainArea extends GridPane {
 		this.add(new Label("Key –"), 1, 1);
 		this.add(new Label("Time –"), 2, 1);
 		this.add(new Label("Counter"), 3, 1);
-		// list of slices
+		// list of slices (including table footer)
 		int rowIndex = 1;
 		for (Slice slice : SliceMap.getInstance().values()) {
 			rowIndex++;
@@ -32,8 +32,6 @@ public class MainArea extends GridPane {
 			this.add(slice.sliceTimerLabel, 2, rowIndex);
 			this.add(new Label(Long.toString(slice.sliceCounter)), 3, rowIndex);
 		}
-		// table footer
-		// TODO: total numbers
 	}
 	
 }

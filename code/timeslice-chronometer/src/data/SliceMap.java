@@ -21,6 +21,8 @@ public class SliceMap extends TreeMap<String, Slice> {
 	public static SortedMap<String, Slice> getInstance() {
 		if (map == null) {
 			map = new TreeMap<String, Slice>();
+			// add footer entry (total values)
+			map.put("sum", new Slice("sum"));
 		}
 		return map;
 	}
