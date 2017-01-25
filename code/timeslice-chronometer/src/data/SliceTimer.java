@@ -1,5 +1,6 @@
 package data;
 
+import control.SliceHandler;
 import gui.Main;
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Label;
@@ -27,7 +28,7 @@ public class SliceTimer extends AnimationTimer {
 		time += delta;
 		lastTime += 100 * delta;
 		if (Main.getInstance() != null && Main.getInstance().mainArea != null) {
-			Label currentSliceLabel = Slice.getCurrentSlice().sliceTimerLabel;
+			Label currentSliceLabel = SliceHandler.getCurrentSlice().sliceTimerLabel;
 			currentSliceLabel.setText(Double.toString(time/10.));
 		}
 	}

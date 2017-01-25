@@ -7,9 +7,6 @@ import javafx.scene.control.Label;
 
 public class Slice {
 
-	// currently running slice
-	private static Slice currentSlice = null;
-
 	// list of all slices
 	public static SortedMap<String, Slice> sliceList = new TreeMap<String, Slice>();
 	
@@ -30,12 +27,5 @@ public class Slice {
 		this.triggerKey = triggerKey;
 	}
 	
-	public static void setCurrentSlice(char triggerKey) {
-		currentSlice = sliceList.get(""+triggerKey);
-	}
-	
-	public static Slice getCurrentSlice() {
-		return currentSlice;
-	}
 	
 }

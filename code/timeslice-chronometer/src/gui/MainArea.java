@@ -1,5 +1,6 @@
 package gui;
 
+import control.SliceHandler;
 import data.Slice;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -19,8 +20,8 @@ public class MainArea extends GridPane {
 		Slice.sliceList.put("w", new Slice('w'));
 		Slice.sliceList.put("d", new Slice('d'));
 		updateSliceList();
-		Slice.setCurrentSlice('d');
-		Slice.getCurrentSlice().sliceTimer.start();
+		SliceHandler.setCurrentSlice("d");
+		SliceHandler.getCurrentSlice().sliceTimer.start();
 	}
 	
 	public void updateSliceList() {
