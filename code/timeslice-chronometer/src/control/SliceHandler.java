@@ -1,6 +1,7 @@
 package control;
 
 import data.Slice;
+import data.SliceMap;
 
 // TODO: class docu
 public class SliceHandler {
@@ -10,7 +11,7 @@ public class SliceHandler {
 
 	// TODO: method docu
 	public static void setCurrentSlice(String triggerKey) {
-		currentSlice = Slice.sliceList.get(triggerKey);
+		currentSlice = SliceMap.getInstance().get(triggerKey);
 	}
 
 	// TODO: method docu
