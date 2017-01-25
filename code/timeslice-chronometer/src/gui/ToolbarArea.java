@@ -16,6 +16,6 @@ public class ToolbarArea extends ToolBar {
 		// actionlisteners
 		exitButton.setOnAction(e -> {Platform.exit();});
 		// add all buttons
-		this.getItems().add(exitButton);
+		//this.getItems().add(exitButton);
 	}
 }

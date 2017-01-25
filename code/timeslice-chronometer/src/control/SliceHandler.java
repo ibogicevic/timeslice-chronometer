@@ -13,14 +13,40 @@ public class SliceHandler {
 	/** Currently running slice */
 	private static Slice currentSlice = null;
 
+	/** Previously running slice (before break) */
+	private static Slice lastSlice = null;
+
 	/**
-	 * Get the current running slide
+	 * Get the current running slice
 	 * @return current slide or null if no slice timer is running
 	 */
 	public static Slice getCurrentSlice() {
 		return currentSlice;
 	}
-	
+
+	/**
+	 * Stops the timer of the current running slice or continues it after a break
+	 */
+	public static void toggleBreak() {
+		Slice sumSlice = SliceMap.getInstance().get("sum");
+		if (currentSlice != null) {
+			// timer is running, stop it			
+			currentSlice.sliceTimer.stop();
+			lastSlice = currentSlice;
+			currentSlice = null;
+			// stop also sum slice timer
+			sumSlice.sliceTimer.stop();
+		} else {
+			// no timer is running, continue with last one
+			currentSlice = lastSlice;
+			if (currentSlice != null) {
+				currentSlice.sliceTimer.start();
+			}
+			// start also sum slice timer
+			sumSlice.sliceTimer.stop();
+		}
+	}
+
 	/**
 	 * Handle the event that the users presses a letter (start/continue/stop timer)
 	 * @param key the character of the pressed key
@@ -40,12 +66,14 @@ public class SliceHandler {
 		currentSlice = SliceMap.getInstance().get(key);
 		// start/continue associated slice timer
 		currentSlice.sliceTimer.start();
+		Slice sumSlice = SliceMap.getInstance().get("sum");
+		sumSlice.sliceTimer.start();
 		// increase associated slice counter(s)
 		currentSlice.sliceCounter++;
-		SliceMap.getInstance().get("sum").sliceCounter++;
+		sumSlice.sliceCounter++;
 		// update view
 		Main.getInstance().mainArea.updateSliceListView();
 	}
 
-	
+
 }
