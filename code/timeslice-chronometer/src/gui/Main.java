@@ -1,8 +1,10 @@
 package gui;
 
+import control.MainHandler;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -53,6 +55,11 @@ public class Main extends Application {
 		primaryStage.setTitle(APPNAME);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		
+		// redirect keypress events
+		scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+			MainHandler.handleKeyEvent(event);
+		});
 	}
 
 	public static void main(String[] args) {

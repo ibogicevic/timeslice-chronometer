@@ -18,6 +18,10 @@ public class SliceHandler {
 	public static Slice getCurrentSlice() {
 		return currentSlice;
 	}
+	
+	public static void handleLetterKey(char key) {
+		
+	}
 
 	
 }
