@@ -13,7 +13,7 @@ public class Slice {
 	/** The number of times the timer has ben started/restarted*/
 	public long sliceCounter = 0;
 	/** The UI Label for the timer (continuously updated when timer is running) */
-	public Label sliceTimerLabel = new Label("./.");
+	public Label sliceTimerLabel = new Label("0.0");
 	/** The stopwatch timer itself */
 	public SliceTimer sliceTimer = new SliceTimer(sliceTimerLabel);
 	

@@ -1,5 +1,8 @@
 package control;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -9,16 +12,22 @@ import javafx.scene.input.KeyEvent;
  */
 public class MainHandler {
 
+	private static Set<String> unreleasedKeys = new HashSet<String>();
+	
 	/**
 	 * Handle a key press event
 	 * @param event
 	 */
-	public static void handleKeyEvent(KeyEvent event) {
+	public static void handleKeyPressed(KeyEvent event) {
 		
 		// letter key 
 		if (event.getCode().isLetterKey()) {
-			// forward to slice handler
-			SliceHandler.handleLetterKey(event.getCode().toString());
+			// forward to slice handler if just pressed
+			if (!unreleasedKeys.contains(event.getCode().toString())) {
+				SliceHandler.handleLetterKey(event.getCode().toString());
+			}
+			// remember that key has been pressed
+			unreleasedKeys.add(event.getCode().toString());
 		}
 		
 		// space key
@@ -45,6 +54,17 @@ public class MainHandler {
 			System.exit(0);
 		}
 				
+	}
+	
+	/**
+	 * Handle a key release event
+	 * @param event
+	 */
+	public static void handleKeyReleased(KeyEvent event) {
+		// remember that key has been released
+		if (event.getCode().isLetterKey()) {
+			unreleasedKeys.remove(event.getCode().toString());
+		}
 	}
 
 }

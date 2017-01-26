@@ -56,7 +56,10 @@ public class TimesliceChronometer extends Application {
 		
 		// redirect keypress events
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-			MainHandler.handleKeyEvent(event);
+			MainHandler.handleKeyPressed(event);
+		});
+		scene.addEventFilter(KeyEvent.KEY_RELEASED, event -> {
+			MainHandler.handleKeyReleased(event);
 		});
 	}
 
