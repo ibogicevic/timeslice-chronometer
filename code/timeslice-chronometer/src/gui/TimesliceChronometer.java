@@ -26,7 +26,7 @@ public class TimesliceChronometer extends Application {
 	
     // gui areas
 	public ToolbarArea toolbarArea = new ToolbarArea();
-	public MainArea mainArea = new MainArea();
+	public CenterArea mainArea = new CenterArea();
 	public StatusArea statusArea = new StatusArea();
 
 	// remember stage for subwindows

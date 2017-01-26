@@ -6,9 +6,9 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
-public class MainArea extends GridPane {
+public class CenterArea extends GridPane {
 	
-	public MainArea() {
+	public CenterArea() {
 		// table styling
 		this.setPadding(new Insets(10, 10, 10, 10));
 		this.setHgap(5);
