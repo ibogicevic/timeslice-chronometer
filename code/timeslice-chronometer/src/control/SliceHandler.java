@@ -2,7 +2,7 @@ package control;
 
 import data.Slice;
 import data.SliceMap;
-import gui.Main;
+import gui.TimesliceChronometer;
 
 /**
  * Stores and handles all dynamic parts associated to a slice
@@ -72,7 +72,7 @@ public class SliceHandler {
 		currentSlice.sliceCounter++;
 		sumSlice.sliceCounter++;
 		// update view
-		Main.getInstance().mainArea.updateSliceListView();
+		TimesliceChronometer.getInstance().mainArea.updateSliceListView();
 	}
 
 

@@ -13,14 +13,14 @@ import javafx.stage.Stage;
  * Startup JavaFX frame
  * @author ivan
  */
-public class Main extends Application {
+public class TimesliceChronometer extends Application {
 
 	/** Name of the application **/
 	public final static String APPNAME = "Timeslice-Chronometer";
 	
 	// singleton
-	private static Main instance;
-	public static Main getInstance() {
+	private static TimesliceChronometer instance;
+	public static TimesliceChronometer getInstance() {
 		return instance;
 	}
 	
@@ -38,7 +38,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		// remember singleton instance (instantiated by javafx)
-		Main.instance = this;
+		TimesliceChronometer.instance = this;
 		
 		// remember stage for subwindows
 		this.primaryStage = primaryStage;
