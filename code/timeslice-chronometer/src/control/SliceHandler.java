@@ -75,5 +75,11 @@ public class SliceHandler {
 		TimesliceChronometer.getInstance().mainArea.updateSliceListView();
 	}
 
+	/**
+	 * Saves all slice data to a csv-file
+	 */
+	public static void exportData() {
+		// TODO: NIY
+	}
 
 }

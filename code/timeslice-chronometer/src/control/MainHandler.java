@@ -3,21 +3,17 @@ package control;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+/**
+ * Handles all events triggered by the user
+ * @author ivan
+ */
 public class MainHandler {
 
+	/**
+	 * Handle a key press event
+	 * @param event
+	 */
 	public static void handleKeyEvent(KeyEvent event) {
-		
-		// space key
-		if (event.getCode().equals(KeyCode.SPACE)) {
-			// pause
-			SliceHandler.toggleBreak();
-		}
-		
-		// escape key
-		if (event.getCode().equals(KeyCode.ESCAPE)) {
-			// exit application
-			System.exit(0);
-		}
 		
 		// letter key 
 		if (event.getCode().isLetterKey()) {
@@ -25,6 +21,24 @@ public class MainHandler {
 			SliceHandler.handleLetterKey(event.getCode().toString());
 		}
 		
+		// space key
+		if (event.getCode().equals(KeyCode.SPACE)) {
+			// pause
+			SliceHandler.toggleBreak();
+		}
+		
+		// enter key
+		if (event.getCode().equals(KeyCode.ENTER)) {
+			// save data
+			SliceHandler.exportData();
+		}
+
+		// escape key
+		if (event.getCode().equals(KeyCode.ESCAPE)) {
+			// exit application
+			System.exit(0);
+		}
+				
 	}
 
 }
