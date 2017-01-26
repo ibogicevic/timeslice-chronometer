@@ -48,6 +48,26 @@ public class SliceHandler {
 	}
 
 	/**
+	 * Resets measurement by stopping and deleting all slices
+	 */
+	public static void resetSlices() {
+		Slice sumSlice = SliceMap.getInstance().get("sum");
+		// stop all timers
+		if (currentSlice != null) {
+			// timer is running, stop it			
+			currentSlice.sliceTimer.stop();
+			lastSlice = currentSlice;
+			currentSlice = null;
+			// stop also sum slice timer
+			sumSlice.sliceTimer.stop();
+		}
+		// delete all timers
+		SliceMap.reset();
+		// update view
+		TimesliceChronometer.getInstance().mainArea.updateSliceListView();
+	}
+	
+	/**
 	 * Handle the event that the users presses a letter (start/continue/stop timer)
 	 * @param key the character of the pressed key
 	 */
@@ -74,6 +94,8 @@ public class SliceHandler {
 		// update view
 		TimesliceChronometer.getInstance().mainArea.updateSliceListView();
 	}
+	
+	
 
 	/**
 	 * Saves all slice data to a csv-file

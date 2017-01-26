@@ -26,6 +26,12 @@ public class MainHandler {
 			// pause
 			SliceHandler.toggleBreak();
 		}
+
+		// backspace key
+		if (event.getCode().equals(KeyCode.BACK_SPACE)) {
+			// reset measurement
+			SliceHandler.resetSlices();
+		}
 		
 		// enter key
 		if (event.getCode().equals(KeyCode.ENTER)) {

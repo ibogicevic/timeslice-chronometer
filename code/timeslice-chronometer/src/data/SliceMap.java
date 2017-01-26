@@ -28,4 +28,10 @@ public class SliceMap extends TreeMap<String, Slice> {
 		return map;
 	}
 	
+	/** Delete all slices */
+	public static void reset() {
+		// delete map
+		map = null;
+	}
+	
 }
