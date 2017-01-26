@@ -43,7 +43,7 @@ public class SliceHandler {
 				currentSlice.sliceTimer.start();
 			}
 			// start also sum slice timer
-			sumSlice.sliceTimer.stop();
+			sumSlice.sliceTimer.start();
 		}
 	}
 
@@ -95,8 +95,6 @@ public class SliceHandler {
 		TimesliceChronometer.getInstance().centerArea.updateSliceListView();
 	}
 	
-	
-
 	/**
 	 * Saves all slice data to a csv-file
 	 */
