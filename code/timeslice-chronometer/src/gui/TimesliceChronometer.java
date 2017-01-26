@@ -25,7 +25,6 @@ public class TimesliceChronometer extends Application {
 	}
 	
     // gui areas
-	public ToolbarArea toolbarArea = new ToolbarArea();
 	public CenterArea mainArea = new CenterArea();
 	public StatusArea statusArea = new StatusArea();
 
@@ -45,7 +44,6 @@ public class TimesliceChronometer extends Application {
 				
 		// add all areas
 		BorderPane mainPane = new BorderPane();
-		mainPane.setTop(toolbarArea);
 		mainPane.setCenter(mainArea);
 		mainPane.setBottom(statusArea);
 
