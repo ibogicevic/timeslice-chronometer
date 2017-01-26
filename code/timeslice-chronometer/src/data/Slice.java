@@ -2,12 +2,19 @@ package data;
 
 import javafx.scene.control.Label;
 
+/**
+ * A Slice is a stopwatch timer with its associated data. 
+ * @author ivan
+ */
 public class Slice {
 
-	// TODO: add comments for fields
+	/** Id of the slice and keycode the users presses to continue the timer */
 	public String triggerKey;
+	/** The stopwatch timer itself */
 	public SliceTimer sliceTimer = new SliceTimer();
+	/** The number of times the timer has ben started/restarted*/
 	public long sliceCounter = 0;
+	/** The UI Label for the timer (continuously updated when timer is running) */
 	public Label sliceTimerLabel = new Label("./.");
 	
 	/** Private empty constructor (triggerKey must be set) */

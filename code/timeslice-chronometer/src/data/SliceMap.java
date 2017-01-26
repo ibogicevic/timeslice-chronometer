@@ -10,7 +10,7 @@ import java.util.TreeMap;
 @SuppressWarnings("serial")
 public class SliceMap extends TreeMap<String, Slice> {
 
-	/** Singleton-Pattern */
+	/** Singleton-Pattern, triggerKey is mapped to Slice */
 	private static SortedMap<String, Slice> map = null;
 	
 	/** Hidden default constructor */
@@ -20,13 +20,12 @@ public class SliceMap extends TreeMap<String, Slice> {
 	/** Get singleton instance */
 	public static SortedMap<String, Slice> getInstance() {
 		if (map == null) {
+			// map does not exist yet
 			map = new TreeMap<String, Slice>();
 			// add footer entry (total values)
 			map.put("sum", new Slice("sum"));
 		}
 		return map;
 	}
-	
-	
 	
 }
