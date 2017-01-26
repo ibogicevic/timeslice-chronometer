@@ -10,8 +10,8 @@ import javafx.scene.control.Label;
  */
 public class SliceTimer extends AnimationTimer {
 
-	// last saved timer value in milliseconds
-	private long lastTime = 0;
+	// time the timer has been started in milliseconds
+	private long startTime = 0;
 	// timer value in milliseconds
 	private long time = 0;
 	// cache timer label
@@ -32,7 +32,8 @@ public class SliceTimer extends AnimationTimer {
 	 * Start/continue the stopwatch
 	 */
 	public void start() {
-		lastTime = System.currentTimeMillis();
+		// remember start time
+		startTime = System.currentTimeMillis();
 		// call parent start method
 		super.start();
 	}
@@ -52,13 +53,14 @@ public class SliceTimer extends AnimationTimer {
 	 */
 	public void handle(long now) {
 		long currentTime = System.currentTimeMillis();
-		long delta = (currentTime - lastTime) / 100;
+		long delta = (currentTime - startTime);
 		time += delta;
-		lastTime += 100 * delta;
+		startTime += delta;
 		if (TimesliceChronometer.getInstance() != null
 				&& TimesliceChronometer.getInstance().centerArea != null) {
-			// update timer label
-			timerLabelCache.setText(Double.toString(time/10.));
+			// update timer label (round to 0.1s)
+			long roundedTime = 100 * Math.round(time/100.);
+			timerLabelCache.setText(Double.toString(roundedTime/1000.));
 		}
 	}
 };
