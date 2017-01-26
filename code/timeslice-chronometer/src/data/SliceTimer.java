@@ -43,7 +43,8 @@ public class SliceTimer extends AnimationTimer {
 		long delta = (currentTime - lastTime) / 100;
 		time += delta;
 		lastTime += 100 * delta;
-		if (TimesliceChronometer.getInstance() != null && TimesliceChronometer.getInstance().mainArea != null) {
+		if (TimesliceChronometer.getInstance() != null
+				&& TimesliceChronometer.getInstance().centerArea != null) {
 			Label currentSliceLabel = SliceHandler.getCurrentSlice().sliceTimerLabel;
 			currentSliceLabel.setText(Double.toString(time/10.));
 		}

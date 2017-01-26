@@ -25,7 +25,7 @@ public class TimesliceChronometer extends Application {
 	}
 	
     // gui areas
-	public CenterArea mainArea = new CenterArea();
+	public CenterArea centerArea = new CenterArea();
 	public StatusArea statusArea = new StatusArea();
 
 	// remember stage for subwindows
@@ -44,7 +44,7 @@ public class TimesliceChronometer extends Application {
 				
 		// add all areas
 		BorderPane mainPane = new BorderPane();
-		mainPane.setCenter(mainArea);
+		mainPane.setCenter(centerArea);
 		mainPane.setBottom(statusArea);
 
 		// show main pane

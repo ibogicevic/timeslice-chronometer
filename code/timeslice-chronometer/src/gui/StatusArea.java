@@ -10,7 +10,7 @@ import javafx.scene.layout.GridPane;
  */
 public class StatusArea extends GridPane {
 	
-	// info text
+	/** Info text that explains the key-press options */
 	final private String INFOTEXT = ""
 			+ "A..Z: switch to associated slice timer, increase counter\n"
 			+ "SPACE: pause measurement\n"
@@ -18,6 +18,9 @@ public class StatusArea extends GridPane {
 			+ "ENTER: save data as export.csv\n"
 			+ "ESCAPE: exit application\n";
 	
+	/**
+	 * Initialize StatusArea
+	 */
 	public StatusArea() {
 		// pane styling
 		this.setPadding(new Insets(10, 10, 10, 10));
@@ -26,5 +29,4 @@ public class StatusArea extends GridPane {
 		// add info text
 		this.add(new Label(INFOTEXT), 1, 1);
 	}
-	
 }

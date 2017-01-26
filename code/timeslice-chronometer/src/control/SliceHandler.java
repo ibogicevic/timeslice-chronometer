@@ -64,7 +64,7 @@ public class SliceHandler {
 		// delete all timers
 		SliceMap.reset();
 		// update view
-		TimesliceChronometer.getInstance().mainArea.updateSliceListView();
+		TimesliceChronometer.getInstance().centerArea.updateSliceListView();
 	}
 	
 	/**
@@ -92,7 +92,7 @@ public class SliceHandler {
 		currentSlice.sliceCounter++;
 		sumSlice.sliceCounter++;
 		// update view
-		TimesliceChronometer.getInstance().mainArea.updateSliceListView();
+		TimesliceChronometer.getInstance().centerArea.updateSliceListView();
 	}
 	
 	
