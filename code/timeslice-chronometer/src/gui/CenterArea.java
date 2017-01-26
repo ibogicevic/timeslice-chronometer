@@ -18,7 +18,7 @@ public class CenterArea extends GridPane {
 	public CenterArea() {
 		// table styling
 		this.setPadding(new Insets(10, 10, 10, 10));
-		this.setHgap(5);
+		this.setHgap(10);
 		this.setVgap(5);
 		// show initial view
 		updateSliceListView();
