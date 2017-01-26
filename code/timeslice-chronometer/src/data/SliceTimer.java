@@ -1,6 +1,5 @@
 package data;
 
-import control.SliceHandler;
 import gui.TimesliceChronometer;
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Label;
@@ -15,13 +14,26 @@ public class SliceTimer extends AnimationTimer {
 	private long lastTime = 0;
 	// timer value in milliseconds
 	private long time = 0;
+	// cache timer label
+	private Label timerLabelCache;
 
+	/** Private default constructor because label must be filled in cache */
+	@SuppressWarnings("unused")
+	private SliceTimer() {
+	}
+	
+	public SliceTimer(Label timerLabel) {
+		// fill timer label cache
+		timerLabelCache = timerLabel;
+	}
+	
 	@Override
 	/**
 	 * Start/continue the stopwatch
 	 */
 	public void start() {
 		lastTime = System.currentTimeMillis();
+		// call parent start method
 		super.start();
 	}
 
@@ -45,8 +57,8 @@ public class SliceTimer extends AnimationTimer {
 		lastTime += 100 * delta;
 		if (TimesliceChronometer.getInstance() != null
 				&& TimesliceChronometer.getInstance().centerArea != null) {
-			Label currentSliceLabel = SliceHandler.getCurrentSlice().sliceTimerLabel;
-			currentSliceLabel.setText(Double.toString(time/10.));
+			// update timer label
+			timerLabelCache.setText(Double.toString(time/10.));
 		}
 	}
 };
