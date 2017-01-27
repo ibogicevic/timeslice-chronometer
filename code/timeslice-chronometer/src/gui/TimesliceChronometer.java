@@ -49,7 +49,8 @@ public class TimesliceChronometer extends Application {
 
 		// show main pane
 		Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-		Scene scene = new Scene(mainPane, screenBounds.getWidth(), screenBounds.getHeight(), true);
+		Scene scene = new Scene(mainPane, screenBounds.getWidth() / 3.0, screenBounds.getHeight() / 2.0, true);
+		
 		primaryStage.setTitle(APPNAME);
 		primaryStage.setScene(scene);
 		primaryStage.show();
