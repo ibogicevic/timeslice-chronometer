@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -20,13 +21,13 @@ import javafx.scene.input.KeyEvent;
 public class MainHandler {
 
 	private static Set<String> unreleasedKeys = new HashSet<String>();
-	
+
 	/**
 	 * Handle a key press event
 	 * @param event
 	 */
 	public static void handleKeyPressed(KeyEvent event) {
-		
+
 		// letter key 
 		if (event.getCode().isLetterKey()) {
 			// forward to slice handler if just pressed
@@ -36,7 +37,7 @@ public class MainHandler {
 			// remember that key has been pressed
 			unreleasedKeys.add(event.getCode().toString());
 		}
-		
+
 		// space key
 		if (event.getCode().equals(KeyCode.SPACE)) {
 			// pause
@@ -51,41 +52,21 @@ public class MainHandler {
 			alert.setHeaderText("Do you really want to reset all timers?");
 			Optional<ButtonType> result = alert.showAndWait();
 			if (result.get() == ButtonType.OK){
-			    // User says OK, so reset measurement
+				// User says OK, so reset measurement
 				SliceHandler.resetSlices();
 			} else {
-			    // Cancel, do nothing
+				// Cancel, do nothing
 			}
 		}
-		
+
 		// enter key
 		if (event.getCode().equals(KeyCode.ENTER)) {
 			// save data
 			SliceHandler.exportData();
 		}
 
-		// escape key
-		if (event.getCode().equals(KeyCode.ESCAPE)) {
-			// ask user to confirm exit
-//			Alert alert = new Alert(AlertType.CONFIRMATION);
-//			alert.setOnCloseRequest(new EventHandler<DialogEvent>() {
-//			    public void handle(DialogEvent event) {
-//			    	System.out.println(event.getEventType().toString());
-//			        event.consume();
-//			    }});
-//			alert.setTitle("Confirm Exit");
-//			alert.setHeaderText("Do you really want to exit the application?");
-//			Optional<ButtonType> result = alert.showAndWait();
-//			if (result.get() == ButtonType.OK){
-//				// User says OK, so exit application
-//				System.exit(0);
-//			} else {
-//			    // Cancel, do nothing
-//			}
-		}
-				
 	}
-	
+
 	/**
 	 * Handle a key release event
 	 * @param event
@@ -96,5 +77,26 @@ public class MainHandler {
 			unreleasedKeys.remove(event.getCode().toString());
 		}
 	}
+
+	/**
+	 * Handle an application close request
+	 * @param event
+	 */
+	public static void handleCloseRequest(Event event) {
+		// ask user to confirm exit
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Confirm Exit");
+		alert.setHeaderText("Do you really want to exit the application?");
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK){
+			// User says Ok
+			System.exit(0);
+		} else {
+			// User says Cancel 
+			event.consume();
+			alert.close();
+		}
+	}
+
 
 }

@@ -16,7 +16,7 @@ public class StatusArea extends GridPane {
 			+ "SPACE: pause measurement\n"
 			+ "BACKSPACE: restart measurement\n"
 			//+ "ENTER: save data as export.csv\n"
-			+ "ESCAPE: exit application\n";
+			+ "";
 	
 	/** About text that explains the tool background */
 	final private String ABOUTTEXT = "(c) 2017 Dr. Ivan Bogicevic\n"
@@ -35,6 +35,6 @@ public class StatusArea extends GridPane {
 		this.setVgap(10);
 		// add info text
 		this.add(new Label(INFOTEXT), 1, 1);
-		this.add(new Label(ABOUTTEXT), 2, 1);
+		this.add(new Label(ABOUTTEXT), 1, 2);
 	}
 }

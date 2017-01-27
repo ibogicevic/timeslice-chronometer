@@ -61,6 +61,11 @@ public class TimesliceChronometer extends Application {
 		scene.addEventFilter(KeyEvent.KEY_RELEASED, event -> {
 			MainHandler.handleKeyReleased(event);
 		});
+		
+		// redirect close event
+		this.primaryStage.setOnCloseRequest(event -> {
+			MainHandler.handleCloseRequest(event);
+		});
 	}
 
 	public static void main(String[] args) {
