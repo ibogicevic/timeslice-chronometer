@@ -1,8 +1,16 @@
 package control;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import data.Slice;
 import data.SliceMap;
 import gui.TimesliceChronometer;
+import javafx.stage.FileChooser;
 
 /**
  * Stores and handles all dynamic parts associated to a slice
@@ -66,7 +74,7 @@ public class SliceHandler {
 		// update view
 		TimesliceChronometer.getInstance().centerArea.updateSliceListView();
 	}
-	
+
 	/**
 	 * Handle the event that the users presses a letter (start/continue/stop timer)
 	 * @param key the character of the pressed key
@@ -94,12 +102,49 @@ public class SliceHandler {
 		// update view
 		TimesliceChronometer.getInstance().centerArea.updateSliceListView();
 	}
-	
+
 	/**
 	 * Saves all slice data to a csv-file
 	 */
 	public static void exportData() {
-		// TODO: NIY
+		// generate path names and file name
+		String homeDir = System.getProperty("user.home");
+		File homeDirFile = new File(homeDir);
+		String timeStamp = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date());
+		String fileName = "timeslices.csv";
+		String fullFileName = timeStamp + "_" + fileName;
+		String filePath = homeDir + File.separator + fullFileName;
+		// save as dialog
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Save as CSV-File");
+		fileChooser.setInitialDirectory(homeDirFile);
+		fileChooser.setInitialFileName(fullFileName);
+		File file = fileChooser.showSaveDialog(TimesliceChronometer.getInstance().getPrimaryStage());
+		// cancel if no file is chosen
+		if (file == null) {
+			return;
+		}
+		// file has been chosen
+		try {
+			// initialize writers
+			FileWriter fileWriter = new FileWriter(filePath);
+			BufferedWriter writer = new BufferedWriter(fileWriter);
+			// write data of all slices
+			for (Slice slice : SliceMap.getInstance().values()) {
+				// write slice data
+				writer.write(slice.triggerKey);
+				writer.write(";");
+				writer.write(slice.sliceTimer.getRoundedTime());
+				writer.write(";");
+				writer.write(Long.toString(slice.sliceCounter));
+				writer.write(";");
+			}
+			// close writer
+			writer.close();
+		} catch (IOException e) {
+			// write error
+			e.printStackTrace();
+		}
 	}
 
 }

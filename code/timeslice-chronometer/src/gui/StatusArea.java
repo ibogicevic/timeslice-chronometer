@@ -15,7 +15,7 @@ public class StatusArea extends GridPane {
 			+ "A..Z: switch to slice, increase counter\n"
 			+ "SPACE: pause measurement\n"
 			+ "BACKSPACE: restart measurement\n"
-			//+ "ENTER: save data as export.csv\n"
+			+ "ENTER: save data as csv-file\n"
 			+ "";
 	
 	/** About text that explains the tool background */

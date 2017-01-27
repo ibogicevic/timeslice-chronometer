@@ -58,10 +58,19 @@ public class SliceTimer extends AnimationTimer {
 		startTime += delta;
 		if (TimesliceChronometer.getInstance() != null
 				&& TimesliceChronometer.getInstance().centerArea != null) {
-			// update timer label (round to 0.1s)
-			long roundedTime = 100 * Math.round(time/100.);
-			timerLabelCache.setText(Double.toString(roundedTime/1000.));
+			// update timer label (round)
+			timerLabelCache.setText(getRoundedTime());
 		}
+	}
+	
+	/**
+	 * Rounds the time to 0.1s and converts it to a string
+	 * @return the number of seconds the timer was running
+	 */
+	public String getRoundedTime() {
+		long roundedTime = 100 * Math.round(time/100.);
+		String roundedTimeString = Double.toString(roundedTime/1000.); 
+		return roundedTimeString;
 	}
 };
 
