@@ -1,8 +1,15 @@
 package control;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
+import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogEvent;
+import javafx.scene.input.InputEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -38,8 +45,17 @@ public class MainHandler {
 
 		// backspace key
 		if (event.getCode().equals(KeyCode.BACK_SPACE)) {
-			// reset measurement
-			SliceHandler.resetSlices();
+			// ask user to confirm reset
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Confirm Reset");
+			alert.setHeaderText("Do you really want to reset all timers?");
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == ButtonType.OK){
+			    // User says OK, so reset measurement
+				SliceHandler.resetSlices();
+			} else {
+			    // Cancel, do nothing
+			}
 		}
 		
 		// enter key
@@ -50,8 +66,22 @@ public class MainHandler {
 
 		// escape key
 		if (event.getCode().equals(KeyCode.ESCAPE)) {
-			// exit application
-			System.exit(0);
+			// ask user to confirm exit
+//			Alert alert = new Alert(AlertType.CONFIRMATION);
+//			alert.setOnCloseRequest(new EventHandler<DialogEvent>() {
+//			    public void handle(DialogEvent event) {
+//			    	System.out.println(event.getEventType().toString());
+//			        event.consume();
+//			    }});
+//			alert.setTitle("Confirm Exit");
+//			alert.setHeaderText("Do you really want to exit the application?");
+//			Optional<ButtonType> result = alert.showAndWait();
+//			if (result.get() == ButtonType.OK){
+//				// User says OK, so exit application
+//				System.exit(0);
+//			} else {
+//			    // Cancel, do nothing
+//			}
 		}
 				
 	}
