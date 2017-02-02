@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import gui.TimesliceChronometer;
 import javafx.event.Event;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -51,6 +52,8 @@ public class MainHandler {
 			if (result.get() == ButtonType.OK){
 				// User says OK, so reset measurement
 				SliceHandler.resetSlices();
+				// restart video
+				TimesliceChronometer.getInstance().videoArea.stop();			
 			} else {
 				// Cancel, do nothing
 			}

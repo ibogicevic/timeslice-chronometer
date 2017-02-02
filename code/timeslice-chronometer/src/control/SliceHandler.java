@@ -42,16 +42,20 @@ public class SliceHandler {
 			currentSlice.sliceTimer.stop();
 			lastSlice = currentSlice;
 			currentSlice = null;
-			// stop also sum slice timer
+			// stop sum slice timer
 			sumSlice.sliceTimer.stop();
+			// stop video
+			TimesliceChronometer.getInstance().videoArea.pause();
 		} else {
 			// no timer is running, continue with last one
 			currentSlice = lastSlice;
 			if (currentSlice != null) {
 				currentSlice.sliceTimer.start();
 			}
-			// start also sum slice timer
+			// start sum slice timer
 			sumSlice.sliceTimer.start();
+			// continue video
+			TimesliceChronometer.getInstance().videoArea.play();			
 		}
 	}
 
@@ -72,7 +76,7 @@ public class SliceHandler {
 		// delete all timers
 		SliceMap.reset();
 		// update view
-		TimesliceChronometer.getInstance().centerArea.updateSliceListView();
+		TimesliceChronometer.getInstance().slicesArea.updateSliceListView();
 	}
 
 	/**
@@ -99,8 +103,10 @@ public class SliceHandler {
 		// increase associated slice counter(s)
 		currentSlice.sliceCounter++;
 		sumSlice.sliceCounter++;
+		// continue video
+		TimesliceChronometer.getInstance().videoArea.play();
 		// update view
-		TimesliceChronometer.getInstance().centerArea.updateSliceListView();
+		TimesliceChronometer.getInstance().slicesArea.updateSliceListView();
 	}
 
 	/**
