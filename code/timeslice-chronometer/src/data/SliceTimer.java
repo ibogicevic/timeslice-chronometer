@@ -57,7 +57,7 @@ public class SliceTimer extends AnimationTimer {
 		time += delta;
 		startTime += delta;
 		if (TimesliceChronometer.getInstance() != null
-				&& TimesliceChronometer.getInstance().centerArea != null) {
+				&& TimesliceChronometer.getInstance().slicesArea != null) {
 			// update timer label (round)
 			timerLabelCache.setText(getRoundedTime());
 		}

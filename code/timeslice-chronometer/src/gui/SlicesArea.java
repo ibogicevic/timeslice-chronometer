@@ -7,15 +7,15 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 /**
- * GridPane for the center area of the screen containing the slice data
+ * GridPane containing the slice data
  * @author ivan
  */
-public class CenterArea extends GridPane {
+public class SlicesArea extends GridPane {
 	
 	/**
 	 * Initialize Area
 	 */
-	public CenterArea() {
+	public SlicesArea() {
 		// table styling
 		this.setPadding(new Insets(10, 10, 10, 10));
 		this.setHgap(10);

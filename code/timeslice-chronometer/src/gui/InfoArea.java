@@ -5,10 +5,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 /**
- * StatusArea at the bottom of the main window
+ * InfoArea at the bottom of the main window
  * @author ivan
  */
-public class StatusArea extends GridPane {
+public class InfoArea extends GridPane {
 	
 	/** Info text that explains the key-press options */
 	final private String INFOTEXT = ""
@@ -26,9 +26,9 @@ public class StatusArea extends GridPane {
 			+ "Institute of Software Technology, Software Engineering Group";	
 	
 	/**
-	 * Initialize StatusArea
+	 * Initialize InfoArea
 	 */
-	public StatusArea() {
+	public InfoArea() {
 		// pane styling
 		this.setPadding(new Insets(10, 10, 10, 10));
 		this.setHgap(10);
