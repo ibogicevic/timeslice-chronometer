@@ -57,7 +57,6 @@ public class TimesliceChronometer extends Application {
 		row2.setPercentHeight(25);
 		mainPane.getColumnConstraints().addAll(col1,col2);
 		mainPane.getRowConstraints().addAll(row1, row2);
-		mainPane.setGridLinesVisible(true);
 		mainPane.add(slicesArea, 0, 0);
 		mainPane.add(videoArea, 1, 0);
 		mainPane.add(infoArea, 0, 1, 2, 1);
