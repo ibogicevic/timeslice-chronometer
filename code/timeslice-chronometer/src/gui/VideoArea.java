@@ -1,6 +1,8 @@
 package gui;
 
 import java.io.File;
+import java.net.MalformedURLException;
+import java.util.logging.Logger;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -41,7 +43,12 @@ public class VideoArea extends BorderPane {
 			return;
 		}
 		// init video
-		String url = "file://" + videoFile.getAbsolutePath();
+		String url = null;
+		try {
+			url = videoFile.toURI().toURL().toString();
+		} catch (MalformedURLException e) {
+			Logger.getGlobal().warning(e.getLocalizedMessage());
+		}
 		Media media = new Media(url);
 		mediaPlayer = new MediaPlayer(media);
 		mediaView = new MediaView(mediaPlayer);
