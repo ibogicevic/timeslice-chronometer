@@ -22,6 +22,9 @@ public class TimesliceChronometer extends Application {
 	/** Name of the application **/
 	public final static String APPNAME = "Timeslice-Chronometer";
 
+	/** Position of the splitpane's splitter **/
+	private final static double SPLITTERPOS = 25.;
+	
 	// singleton
 	private static TimesliceChronometer instance;
 	public static TimesliceChronometer getInstance() {
@@ -53,10 +56,10 @@ public class TimesliceChronometer extends Application {
 		ColumnConstraints col2 = new ColumnConstraints();
 		RowConstraints row1 = new RowConstraints();
 		RowConstraints row2 = new RowConstraints();
-		col1.setPercentWidth(25);
-		col2.setPercentWidth(75);
-		row1.setPercentHeight(75);
-		row2.setPercentHeight(25);
+		col1.setPercentWidth(SPLITTERPOS);
+		col2.setPercentWidth(100. - SPLITTERPOS);
+		row1.setPercentHeight(100. - SPLITTERPOS);
+		row2.setPercentHeight(SPLITTERPOS);
 		mainPane.getColumnConstraints().addAll(col1,col2);
 		mainPane.getRowConstraints().addAll(row1, row2);
 		mainPane.add(slicesArea, 0, 0);
