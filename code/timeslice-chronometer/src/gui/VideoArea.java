@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.util.logging.Logger;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
@@ -15,8 +16,11 @@ import javafx.stage.Stage;
 public class VideoArea extends BorderPane {
 
 	// TODO: Comments needed
+	private Media media = null;
 	private MediaPlayer mediaPlayer = null;
 	private MediaView mediaView = null;
+	
+	private double originalWindowWidth = 0;
 
 	// TODO: Comments needed
 	public void play() {
@@ -36,6 +40,25 @@ public class VideoArea extends BorderPane {
 			mediaPlayer.stop();
 		}
 	}
+	
+	public void updateSize() {
+		// check if media exists
+		if (media == null) {
+			return;
+		}
+		// calc new size
+		double windowWidth = TimesliceChronometer.getInstance().getPrimaryStage().getWidth();
+    	double windowHeight = TimesliceChronometer.getInstance().getPrimaryStage().getHeight();
+    	double scaleX =  (0.75*windowWidth) / media.getWidth();
+    	double scaleY = (0.75*windowHeight) / media.getHeight();
+    	double scale = Math.min(scaleX, scaleY);
+    	double translationX = -(0.25+0.75/2.)*(originalWindowWidth-20) + (0.25+0.75/2.)*windowWidth;
+    	// apply new size
+    	mediaView.setScaleX(scale);
+		mediaView.setScaleY(scale);		
+		mediaView.setTranslateX(translationX);
+		mediaView.setTranslateY(+20);
+	}
 
 	private void loadVideo(File videoFile) {
 		// check if no file has been chosen
@@ -49,21 +72,19 @@ public class VideoArea extends BorderPane {
 		} catch (MalformedURLException e) {
 			Logger.getGlobal().warning(e.getLocalizedMessage());
 		}
-		Media media = new Media(url);
+		media = new Media(url);
 		mediaPlayer = new MediaPlayer(media);
 		mediaView = new MediaView(mediaPlayer);
 		// remove open-button
 		this.getChildren().clear();
 		// arrange and add view
-		this.setScaleX(0.5);
-		this.setScaleY(0.5);
 		this.setCenter(mediaView);
+		originalWindowWidth = TimesliceChronometer.getInstance().getPrimaryStage().getWidth();
 		// position video when loaded
 		mediaPlayer.setOnReady(new Runnable() {    
             @Override
             public void run() {
-            	mediaView.setTranslateX(-media.getWidth()/4);  
-            	mediaView.setTranslateY(-media.getHeight()/4);  
+            	updateSize();  
             }
         });
 	}
@@ -72,6 +93,8 @@ public class VideoArea extends BorderPane {
 	 * Initialize Area
 	 */
 	public VideoArea() {
+		// table styling
+		this.setPadding(new Insets(10, 10, 10, 10));
 		// add open-button
 		Button openButton = new Button("Open Video");
 		openButton.setOnAction((event) -> {

@@ -2,6 +2,8 @@ package gui;
 
 import control.MainHandler;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
@@ -74,6 +76,18 @@ public class TimesliceChronometer extends Application {
 		});
 		scene.addEventFilter(KeyEvent.KEY_RELEASED, event -> {
 			MainHandler.handleKeyReleased(event);
+		});
+		
+		// redirect window resizing
+		scene.widthProperty().addListener(new ChangeListener<Number>() {
+		    @Override public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {
+		        videoArea.updateSize();
+		    }
+		});
+		scene.heightProperty().addListener(new ChangeListener<Number>() {
+		    @Override public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneHeight, Number newSceneHeight) {
+		        videoArea.updateSize();
+		    }
 		});
 
 		// redirect close event
