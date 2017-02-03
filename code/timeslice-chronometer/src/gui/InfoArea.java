@@ -20,10 +20,12 @@ public class InfoArea extends GridPane {
 	
 	/** About text that explains the tool background */
 	final private String ABOUTTEXT = "(c) 2017 Dr. Ivan Bogicevic\n"
-			+ "Version: 0.1\n"
+			+ "Contributors: Kai Mindermann M.Sc.\n"
+			+ "Version: 0.2\n"
 			+ "Licensed under the Apache License, Version 2.0\n"
 			+ "Developed as part of a research project at the University of Stuttgart,\n"
-			+ "Institute of Software Technology, Software Engineering Group";	
+			+ "Institute of Software Technology, Software Engineering Group"
+			+ "";
 	
 	/**
 	 * Initialize InfoArea
