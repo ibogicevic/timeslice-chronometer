@@ -9,7 +9,7 @@ import javafx.scene.layout.GridPane;
  * @author ivan
  */
 public class InfoArea extends GridPane {
-	
+
 	/** Info text that explains the key-press options */
 	final private String INFOTEXT = ""
 			+ "A..Z: switch to slice, increase counter\n"

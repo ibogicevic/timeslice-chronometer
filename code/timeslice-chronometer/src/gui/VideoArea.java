@@ -15,32 +15,46 @@ import javafx.stage.Stage;
 
 public class VideoArea extends BorderPane {
 
-	// TODO: Comments needed
+	/** Video resource */
 	private Media media = null;
+	/** Player for the video resource */
 	private MediaPlayer mediaPlayer = null;
+	/** View for the mediePlayer */
 	private MediaView mediaView = null;
 	
 	private double originalWindowWidth = 0;
 
-	// TODO: Comments needed
+	/**
+	 * Start playing loaded video (redirects command to mediaplayer)
+	 */
 	public void play() {
 		if (mediaPlayer != null) {
 			mediaPlayer.play();
 		}
 	}
 	
+	/**
+	 * Break playing loaded video (redirects command to mediaplayer)
+	 */
 	public void pause() {
 		if (mediaPlayer != null) {
 			mediaPlayer.pause();
 		}
 	}
 
+	/**
+	 * Stop playing loaded video (redirects command to mediaplayer)
+	 */
 	public void stop() {
 		if (mediaPlayer != null) {
 			mediaPlayer.stop();
 		}
 	}
 	
+	/**
+	 * Resize the mediaview so that it fits to the grid
+	 * FIXME: calculation is wrong, video is not always is the top right corner
+	 */
 	public void updateSize() {
 		// check if media exists
 		if (media == null) {
@@ -60,6 +74,10 @@ public class VideoArea extends BorderPane {
 		mediaView.setTranslateY(+20);
 	}
 
+	/**
+	 * Load, init and position video in mediaPlayer
+	 * @param videoFile video to load
+	 */
 	private void loadVideo(File videoFile) {
 		// check if no file has been chosen
 		if (videoFile == null) {
@@ -99,7 +117,7 @@ public class VideoArea extends BorderPane {
 		Button openButton = new Button("Open Video");
 		openButton.setOnAction((event) -> {
 			FileChooser fileChooser = new FileChooser();
-			fileChooser.setTitle("Open Resource File");
+			fileChooser.setTitle("Open Video");
 			Stage parentWindow = TimesliceChronometer.getInstance().getPrimaryStage();
 			File videoFile = fileChooser.showOpenDialog(parentWindow);
 			loadVideo(videoFile);
