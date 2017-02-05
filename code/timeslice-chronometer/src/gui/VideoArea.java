@@ -61,8 +61,8 @@ public class VideoArea extends BorderPane {
 			return;
 		}
 		// calc new size
-		double windowWidth = TimesliceChronometer.getInstance().getPrimaryStage().getWidth();
-    	double windowHeight = TimesliceChronometer.getInstance().getPrimaryStage().getHeight();
+		double windowWidth = Main.getInstance().getPrimaryStage().getWidth();
+    	double windowHeight = Main.getInstance().getPrimaryStage().getHeight();
     	double scaleX =  (0.75*windowWidth) / media.getWidth();
     	double scaleY = (0.75*windowHeight) / media.getHeight();
     	double scale = Math.min(scaleX, scaleY);
@@ -97,7 +97,7 @@ public class VideoArea extends BorderPane {
 		this.getChildren().clear();
 		// arrange and add view
 		this.setCenter(mediaView);
-		originalWindowWidth = TimesliceChronometer.getInstance().getPrimaryStage().getWidth();
+		originalWindowWidth = Main.getInstance().getPrimaryStage().getWidth();
 		// position video when loaded
 		mediaPlayer.setOnReady(new Runnable() {    
             @Override
@@ -118,7 +118,7 @@ public class VideoArea extends BorderPane {
 		openButton.setOnAction((event) -> {
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.setTitle("Open Video");
-			Stage parentWindow = TimesliceChronometer.getInstance().getPrimaryStage();
+			Stage parentWindow = Main.getInstance().getPrimaryStage();
 			File videoFile = fileChooser.showOpenDialog(parentWindow);
 			loadVideo(videoFile);
 		});

@@ -1,6 +1,6 @@
 package data;
 
-import gui.TimesliceChronometer;
+import gui.Main;
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Label;
 
@@ -56,8 +56,8 @@ public class SliceTimer extends AnimationTimer {
 		long delta = (currentTime - startTime);
 		time += delta;
 		startTime += delta;
-		if (TimesliceChronometer.getInstance() != null
-				&& TimesliceChronometer.getInstance().slicesArea != null) {
+		if (Main.getInstance() != null
+				&& Main.getInstance().slicesArea != null) {
 			// update timer label (round)
 			timerLabelCache.setText(getRoundedTime());
 		}

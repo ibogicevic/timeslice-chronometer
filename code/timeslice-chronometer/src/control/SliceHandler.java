@@ -9,7 +9,7 @@ import java.util.Date;
 
 import data.Slice;
 import data.SliceMap;
-import gui.TimesliceChronometer;
+import gui.Main;
 import javafx.stage.FileChooser;
 
 /**
@@ -45,7 +45,7 @@ public class SliceHandler {
 			// stop sum slice timer
 			sumSlice.sliceTimer.stop();
 			// stop video
-			TimesliceChronometer.getInstance().videoArea.pause();
+			Main.getInstance().videoArea.pause();
 		} else {
 			// no timer is running, continue with last one
 			currentSlice = lastSlice;
@@ -55,7 +55,7 @@ public class SliceHandler {
 			// start sum slice timer
 			sumSlice.sliceTimer.start();
 			// continue video
-			TimesliceChronometer.getInstance().videoArea.play();			
+			Main.getInstance().videoArea.play();			
 		}
 	}
 
@@ -76,7 +76,7 @@ public class SliceHandler {
 		// delete all timers
 		SliceMap.reset();
 		// update view
-		TimesliceChronometer.getInstance().slicesArea.updateSliceListView();
+		Main.getInstance().slicesArea.updateSliceListView();
 	}
 
 	/**
@@ -104,9 +104,9 @@ public class SliceHandler {
 		currentSlice.sliceCounter++;
 		sumSlice.sliceCounter++;
 		// continue video
-		TimesliceChronometer.getInstance().videoArea.play();
+		Main.getInstance().videoArea.play();
 		// update view
-		TimesliceChronometer.getInstance().slicesArea.updateSliceListView();
+		Main.getInstance().slicesArea.updateSliceListView();
 	}
 
 	/**
@@ -125,7 +125,7 @@ public class SliceHandler {
 		fileChooser.setTitle("Save as CSV-File");
 		fileChooser.setInitialDirectory(homeDirFile);
 		fileChooser.setInitialFileName(fullFileName);
-		File file = fileChooser.showSaveDialog(TimesliceChronometer.getInstance().getPrimaryStage());
+		File file = fileChooser.showSaveDialog(Main.getInstance().getPrimaryStage());
 		// cancel if no file is chosen
 		if (file == null) {
 			return;
