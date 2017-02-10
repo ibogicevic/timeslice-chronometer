@@ -17,6 +17,8 @@ public class SliceTimer extends AnimationTimer {
 	// cache timer label
 	private Label timerLabelCache;
 
+	private boolean running = false;
+
 	/** Private default constructor because label must be filled in cache */
 	@SuppressWarnings("unused")
 	private SliceTimer() {
@@ -32,10 +34,13 @@ public class SliceTimer extends AnimationTimer {
 	 * Start/continue the stopwatch
 	 */
 	public void start() {
-		// remember start time
-		startTime = System.currentTimeMillis();
 		// call parent start method
-		super.start();
+		if (!running) {
+			// remember start time
+			startTime = System.currentTimeMillis();
+			super.start();
+		}
+		running = true;
 	}
 
 	@Override
@@ -43,7 +48,10 @@ public class SliceTimer extends AnimationTimer {
 	 * Pause the stopwatch
 	 */
 	public void stop() {
-		super.stop();
+		if (running) {
+			super.stop();
+		}
+		running = false;
 	}
 
 	@Override

@@ -85,9 +85,7 @@ public class SliceHandler {
 	 */
 	public static synchronized void handleLetterKey(String key) {
 		// stop current slice timer
-		if (currentSlice != null) {
-			currentSlice.sliceTimer.stop();
-		}
+		Slice sliceToStop = currentSlice;
 		currentSlice = null;
 		// create new slice if it does not already exist
 		if (!SliceMap.getInstance().containsKey(key)) {
@@ -97,6 +95,9 @@ public class SliceHandler {
 		// reload slice (and remember it)
 		currentSlice = SliceMap.getInstance().get(key);
 		// start/continue associated slice timer
+		if (sliceToStop != null && (sliceToStop != currentSlice)) {
+			sliceToStop.sliceTimer.stop();
+		}
 		currentSlice.sliceTimer.start();
 		Slice sumSlice = SliceMap.getInstance().get("sum");
 		sumSlice.sliceTimer.start();
