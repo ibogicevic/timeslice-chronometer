@@ -119,7 +119,6 @@ public class SliceHandler {
 		String timeStamp = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date());
 		String fileName = "timeslices.csv";
 		String fullFileName = timeStamp + "_" + fileName;
-		String filePath = homeDir + File.separator + fullFileName;
 		// save as dialog
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Save as CSV-File");
@@ -133,7 +132,7 @@ public class SliceHandler {
 		// file has been chosen
 		try {
 			// initialize writers
-			FileWriter fileWriter = new FileWriter(filePath);
+			FileWriter fileWriter = new FileWriter(file.getAbsolutePath());
 			BufferedWriter writer = new BufferedWriter(fileWriter);
 			// write data of all slices
 			for (Slice slice : SliceMap.getInstance().values()) {
