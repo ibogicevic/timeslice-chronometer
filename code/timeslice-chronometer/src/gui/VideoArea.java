@@ -5,9 +5,7 @@ import java.net.MalformedURLException;
 import java.util.logging.Logger;
 
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
-import javafx.scene.control.Slider;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
