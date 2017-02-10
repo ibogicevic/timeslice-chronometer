@@ -12,6 +12,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class VideoArea extends BorderPane {
 
@@ -59,8 +60,19 @@ public class VideoArea extends BorderPane {
 			mediaPlayer.setRate(rate);
 		}
 	}
-
 	
+	/**
+	 * Get the current time of the video (redirects command to mediaplayer)
+	 * @return the time as duration or duration 0 if no video loaded
+	 */
+	public Duration getCurrentTime() {
+		if (mediaPlayer == null) {
+			return new Duration(0);	
+		}
+		return mediaPlayer.getCurrentTime();
+	}
+	
+
 	/**
 	 * Resize the mediaview so that it fits to the grid
 	 * FIXME: calculation is wrong, video is not always is the top right corner

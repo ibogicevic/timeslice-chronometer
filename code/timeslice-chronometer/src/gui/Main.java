@@ -27,7 +27,7 @@ public class Main extends Application {
 	
 	// singleton
 	private static Main instance;
-	public static Main getInstance() {
+	public synchronized static Main getInstance() {
 		return instance;
 	}
 
