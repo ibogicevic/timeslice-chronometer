@@ -117,6 +117,7 @@ public class VideoArea extends BorderPane {
 		this.setPadding(new Insets(10, 10, 10, 10));
 		// add open-button
 		Button openButton = new Button("Open Video");
+		openButton.setFocusTraversable(false);
 		openButton.setOnAction((event) -> {
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.setTitle("Open Video");
