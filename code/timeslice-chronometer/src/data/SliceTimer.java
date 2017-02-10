@@ -16,8 +16,46 @@ public class SliceTimer extends AnimationTimer {
 	private long time = 0;
 	// cache timer label
 	private Label timerLabelCache;
-
+	// flag that specifies whether the slice timer is running
 	private boolean running = false;
+
+	/**
+	 * Gets a timestamp as timing reference (if video is loaded from video, otherwise from system time)
+	 * @return
+	 */
+	private long getCurrentTimeInMillis() {
+		long currentTime = 0;
+		if (Main.getInstance().videoArea.isVideoLoaded()) {
+			// video is loaded, take video time
+			currentTime = (long)(Main.getInstance().videoArea.getCurrentTime().toMillis());
+		} else {
+			// no video loaded, take system time
+			currentTime = System.currentTimeMillis();
+		}
+		return currentTime;
+	}
+
+	/**
+	 * Adds the duration of the current time frame to the time of this timer
+	 * and updates the timer values. 
+	 */
+	private void updateTimer() {
+		// calculate time difference
+		long currentTime = getCurrentTimeInMillis();
+		long delta = (currentTime - startTime);
+		// speedupfactor must only be considered if no video is loaded
+		long speedupFactor = 1;
+		if (!Main.getInstance().videoArea.isVideoLoaded()) {
+			speedupFactor = Math.round(Main.getInstance().infoArea.getSpeedupFactor());
+		}
+		// add time difference of interval
+		time += speedupFactor * delta;
+		startTime += delta;
+		// update timer label (round)
+		if (Main.getInstance() != null && Main.getInstance().slicesArea != null) {
+			timerLabelCache.setText(getRoundedTime());
+		}
+	}
 
 	/** Private default constructor because label must be filled in cache */
 	@SuppressWarnings("unused")
@@ -37,7 +75,7 @@ public class SliceTimer extends AnimationTimer {
 		// call parent start method
 		if (!running) {
 			// remember start time
-			startTime = System.currentTimeMillis();
+			startTime = getCurrentTimeInMillis();
 			super.start();
 		}
 		running = true;
@@ -49,6 +87,7 @@ public class SliceTimer extends AnimationTimer {
 	 */
 	public void stop() {
 		if (running) {
+			updateTimer();
 			super.stop();
 		}
 		running = false;
@@ -60,16 +99,7 @@ public class SliceTimer extends AnimationTimer {
 	 * when timer is running
 	 */
 	public void handle(long now) {
-		// calculate time difference
-		long currentTime = System.currentTimeMillis();
-		long delta = (currentTime - startTime);
-		long speedupFactor = Math.round(Main.getInstance().infoArea.getSpeedupFactor());
-		time += speedupFactor*delta;
-		startTime += delta;
-		// update timer label (round)
-		if (Main.getInstance() != null && Main.getInstance().slicesArea != null) {
-			timerLabelCache.setText(getRoundedTime());
-		}
+		updateTimer();
 	}
 
 	/**

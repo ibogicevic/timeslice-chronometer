@@ -72,6 +72,13 @@ public class VideoArea extends BorderPane {
 		return mediaPlayer.getCurrentTime();
 	}
 	
+	/**
+	 * Checks whether a video is loaded or not
+	 * @return true if a video has been loaded
+	 */
+	public boolean isVideoLoaded() {
+		return (media != null);
+	}
 
 	/**
 	 * Resize the mediaview so that it fits to the grid
