@@ -21,7 +21,7 @@ public class VideoArea extends BorderPane {
 	private MediaPlayer mediaPlayer = null;
 	/** View for the mediePlayer */
 	private MediaView mediaView = null;
-	
+
 	private double originalWindowWidth = 0;
 
 	/**
@@ -32,7 +32,7 @@ public class VideoArea extends BorderPane {
 			mediaPlayer.play();
 		}
 	}
-	
+
 	/**
 	 * Break playing loaded video (redirects command to mediaplayer)
 	 */
@@ -50,6 +50,16 @@ public class VideoArea extends BorderPane {
 			mediaPlayer.stop();
 		}
 	}
+
+	/**
+	 * Set the speedup factor of the video (redirects command to mediaplayer)
+	 */
+	public void setRate(double rate) {
+		if (mediaPlayer != null) {
+			mediaPlayer.setRate(rate);
+		}
+	}
+
 	
 	/**
 	 * Resize the mediaview so that it fits to the grid
@@ -62,18 +72,18 @@ public class VideoArea extends BorderPane {
 		}
 		// calc new size
 		double windowWidth = Main.getInstance().getPrimaryStage().getWidth();
-    	double windowHeight = Main.getInstance().getPrimaryStage().getHeight();
-    	double scaleX =  (0.75*windowWidth) / media.getWidth();
-    	double scaleY = (0.75*windowHeight) / media.getHeight();
-    	double scale = Math.min(scaleX, scaleY);
-    	double translationX = -(0.25+0.75/2.)*(originalWindowWidth-20) + (0.25+0.75/2.)*windowWidth;
-    	// apply new size
-    	mediaView.setScaleX(scale);
+		double windowHeight = Main.getInstance().getPrimaryStage().getHeight();
+		double scaleX =  (0.75*windowWidth) / media.getWidth();
+		double scaleY = (0.75*windowHeight) / media.getHeight();
+		double scale = Math.min(scaleX, scaleY);
+		double translationX = -(0.25+0.75/2.)*(originalWindowWidth-20) + (0.25+0.75/2.)*windowWidth;
+		// apply new size
+		mediaView.setScaleX(scale);
 		mediaView.setScaleY(scale);		
 		mediaView.setTranslateX(translationX);
 		mediaView.setTranslateY(+20);
 	}
-	
+
 	/**
 	 * Load, init and position video in mediaPlayer
 	 * @param videoFile video to load
@@ -93,6 +103,8 @@ public class VideoArea extends BorderPane {
 		media = new Media(url);
 		mediaPlayer = new MediaPlayer(media);
 		mediaView = new MediaView(mediaPlayer);
+		// set default rate
+		this.setRate(Main.getInstance().infoArea.DEFAULT_RATE);
 		// remove open-button
 		this.getChildren().clear();
 		// arrange and add view
@@ -100,13 +112,13 @@ public class VideoArea extends BorderPane {
 		originalWindowWidth = Main.getInstance().getPrimaryStage().getWidth();
 		// position video when loaded
 		mediaPlayer.setOnReady(new Runnable() {    
-            @Override
-            public void run() {
-            	updateSize();  
-            }
-        });
+			@Override
+			public void run() {
+				updateSize();  
+			}
+		});
 	}
-	
+
 	/**
 	 * Initialize Area
 	 */

@@ -21,12 +21,12 @@ public class SliceTimer extends AnimationTimer {
 	@SuppressWarnings("unused")
 	private SliceTimer() {
 	}
-	
+
 	public SliceTimer(Label timerLabel) {
 		// fill timer label cache
 		timerLabelCache = timerLabel;
 	}
-	
+
 	@Override
 	/**
 	 * Start/continue the stopwatch
@@ -52,17 +52,18 @@ public class SliceTimer extends AnimationTimer {
 	 * when timer is running
 	 */
 	public void handle(long now) {
+		// calculate time difference
 		long currentTime = System.currentTimeMillis();
 		long delta = (currentTime - startTime);
-		time += delta;
+		long speedupFactor = Math.round(Main.getInstance().infoArea.getSpeedupFactor());
+		time += speedupFactor*delta;
 		startTime += delta;
-		if (Main.getInstance() != null
-				&& Main.getInstance().slicesArea != null) {
-			// update timer label (round)
+		// update timer label (round)
+		if (Main.getInstance() != null && Main.getInstance().slicesArea != null) {
 			timerLabelCache.setText(getRoundedTime());
 		}
 	}
-	
+
 	/**
 	 * Rounds the time to 0.1s and converts it to a string
 	 * @return the number of seconds the timer was running

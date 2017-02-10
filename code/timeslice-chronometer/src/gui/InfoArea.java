@@ -1,6 +1,7 @@
 package gui;
 
-import javafx.beans.property.DoubleProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -12,6 +13,9 @@ import javafx.scene.layout.GridPane;
  */
 public class InfoArea extends GridPane {
 
+	/** Default speedup rate of measurement */
+	final double DEFAULT_RATE = 4;
+	
 	/** Info text that explains the key-press options */
 	final private String INFOTEXT = ""
 			+ "A..Z: switch to slice, increase counter\n"
@@ -19,7 +23,7 @@ public class InfoArea extends GridPane {
 			+ "BACKSPACE: restart measurement\n"
 			+ "ENTER: save data as csv-file\n"
 			+ "";
-	
+
 	/** About text that explains the tool background */
 	final private String ABOUTTEXT = "(c) 2017 Dr. Ivan Bogicevic\n"
 			+ "Contributors: Kai Mindermann M.Sc.\n"
@@ -33,7 +37,7 @@ public class InfoArea extends GridPane {
 	/** Slider to control the speed of the measurements */
 	Slider speedupSlider = new Slider();
 
-	
+
 	/**
 	 * Adds a slider control so that the user can speedup the video and the time measurement
 	 */
@@ -41,13 +45,20 @@ public class InfoArea extends GridPane {
 		// slider settings
 		speedupSlider.setMin(1);
 		speedupSlider.setMax(8);
-		speedupSlider.setValue(4);
+		speedupSlider.setValue(DEFAULT_RATE);
 		speedupSlider.setShowTickLabels(true);
 		speedupSlider.setMajorTickUnit(1);
 		speedupSlider.setBlockIncrement(1);
 		// only allow whole numbers
 		speedupSlider.valueProperty().addListener((obs, oldval, newVal) ->
-	    speedupSlider.setValue(Math.round(newVal.doubleValue())));
+		speedupSlider.setValue(Math.round(newVal.doubleValue())));
+		// change video rate to slider value
+		speedupSlider.valueProperty().addListener(new ChangeListener<Number>() {
+			public void changed(ObservableValue<? extends Number> value,
+					Number oldValue, Number newValue) {
+				Main.getInstance().videoArea.setRate(newValue.doubleValue());
+			}
+		});
 		// add slider to pane
 		this.add(new Label ("Speedup Factor"), 1, 1);
 		this.add(speedupSlider, 2, 1);
@@ -56,10 +67,10 @@ public class InfoArea extends GridPane {
 	/**
 	 * Returns the current speedup factor of the measurement
 	 */
-	public DoubleProperty getSpeedUpFactor() {
-		return speedupSlider.valueProperty();
+	public double getSpeedupFactor() {
+		return speedupSlider.getValue();
 	}
-	
+
 	/**
 	 * Initialize InfoArea
 	 */
