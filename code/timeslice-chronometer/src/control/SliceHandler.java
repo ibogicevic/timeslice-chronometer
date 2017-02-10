@@ -35,7 +35,7 @@ public class SliceHandler {
 	/**
 	 * Stops the timer of the current running slice or continues it after a break
 	 */
-	public static void toggleBreak() {
+	public static synchronized void toggleBreak() {
 		Slice sumSlice = SliceMap.getInstance().get("sum");
 		if (currentSlice != null) {
 			// timer is running, stop it			
@@ -62,7 +62,7 @@ public class SliceHandler {
 	/**
 	 * Resets measurement by stopping and deleting all slices
 	 */
-	public static void resetSlices() {
+	public static synchronized void resetSlices() {
 		Slice sumSlice = SliceMap.getInstance().get("sum");
 		// stop all timers
 		if (currentSlice != null) {
@@ -83,7 +83,7 @@ public class SliceHandler {
 	 * Handle the event that the users presses a letter (start/continue/stop timer)
 	 * @param key the character of the pressed key
 	 */
-	public static void handleLetterKey(String key) {
+	public static synchronized void handleLetterKey(String key) {
 		// stop current slice timer
 		if (currentSlice != null) {
 			currentSlice.sliceTimer.stop();

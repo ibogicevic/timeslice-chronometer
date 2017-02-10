@@ -18,7 +18,7 @@ public class SliceMap extends TreeMap<String, Slice> {
 	}
 	
 	/** Get singleton instance */
-	public static SortedMap<String, Slice> getInstance() {
+	public static synchronized SortedMap<String, Slice> getInstance() {
 		if (map == null) {
 			// map does not exist yet
 			map = new TreeMap<String, Slice>();
