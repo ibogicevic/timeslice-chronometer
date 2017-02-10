@@ -5,7 +5,9 @@ import java.net.MalformedURLException;
 import java.util.logging.Logger;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -73,7 +75,7 @@ public class VideoArea extends BorderPane {
 		mediaView.setTranslateX(translationX);
 		mediaView.setTranslateY(+20);
 	}
-
+	
 	/**
 	 * Load, init and position video in mediaPlayer
 	 * @param videoFile video to load
@@ -96,7 +98,7 @@ public class VideoArea extends BorderPane {
 		// remove open-button
 		this.getChildren().clear();
 		// arrange and add view
-		this.setCenter(mediaView);
+		this.setTop(mediaView);
 		originalWindowWidth = Main.getInstance().getPrimaryStage().getWidth();
 		// position video when loaded
 		mediaPlayer.setOnReady(new Runnable() {    
