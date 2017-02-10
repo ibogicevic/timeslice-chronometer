@@ -134,16 +134,24 @@ public class SliceHandler {
 			// initialize writers
 			FileWriter fileWriter = new FileWriter(file.getAbsolutePath());
 			BufferedWriter writer = new BufferedWriter(fileWriter);
-			// write data of all slices
+			// write slice keys
 			for (Slice slice : SliceMap.getInstance().values()) {
-				// write slice data
 				writer.write(slice.triggerKey);
 				writer.write(";");
-				writer.write(slice.sliceTimer.getRoundedTime());
-				writer.write(";");
-				writer.write(Long.toString(slice.sliceCounter));
-				writer.write(";");
 			}
+			writer.write("\n");
+			// write slice tiem values 
+			for (Slice slice : SliceMap.getInstance().values()) {
+				writer.write(slice.sliceTimer.getRoundedTime());
+				writer.write(";");				
+			}
+			writer.write("\n");
+			// write slice counters
+			for (Slice slice : SliceMap.getInstance().values()) {
+				writer.write(Long.toString(slice.sliceCounter));
+				writer.write(";");				
+			}
+			writer.write(";");
 			// close writer
 			writer.close();
 		} catch (IOException e) {
