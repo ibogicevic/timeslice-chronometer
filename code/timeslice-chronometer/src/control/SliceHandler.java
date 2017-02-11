@@ -46,6 +46,13 @@ public class SliceHandler {
 			sumSlice.sliceTimer.stop();
 			// stop video
 			Main.getInstance().videoArea.pause();
+		} else if(SliceMap.getInstance().size() == 1 && sumSlice.sliceTimer.isRunning()) {
+			// no timer other than the default "sum" exists and "sum" is running
+
+			// stop sum slice timer
+			sumSlice.sliceTimer.stop();
+			// stop video
+			Main.getInstance().videoArea.pause();
 		} else {
 			// no timer is running, continue with last one
 			currentSlice = lastSlice;
@@ -55,7 +62,7 @@ public class SliceHandler {
 			// start sum slice timer
 			sumSlice.sliceTimer.start();
 			// continue video
-			Main.getInstance().videoArea.play();			
+			Main.getInstance().videoArea.play();
 		}
 	}
 

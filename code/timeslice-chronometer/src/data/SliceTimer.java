@@ -111,5 +111,9 @@ public class SliceTimer extends AnimationTimer {
 		String roundedTimeString = Double.toString(roundedTime/1000.); 
 		return roundedTimeString;
 	}
+
+	public boolean isRunning() {
+		return running;
+	}
 };
 
