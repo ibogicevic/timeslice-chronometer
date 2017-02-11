@@ -5,7 +5,7 @@ This tool has originally been developed to evaluate screen capturing videos that
 
 ## Video Handling
 
-Video handling is done through JavaFX and comes with some limitations. It is only able play certain video files.
+Video handling is done through JavaFX and comes with some limitations. It is only able to play certain video files.
 
 At the time of writing videos may not be bigger than 1920x1080, have the `-pix_fmt yuv420p` option (used in ffmpeg) and use the `h264` codec.
 Videos can be converted to this format by using ffmpeg:
