@@ -123,7 +123,7 @@ public class VideoArea extends BorderPane {
 		mediaPlayer = new MediaPlayer(media);
 		mediaView = new MediaView(mediaPlayer);
 		// set default rate
-		this.setRate(Main.getInstance().infoArea.DEFAULT_RATE);
+		this.setRate(Main.getInstance().infoArea.getSpeedupFactor());
 		// remove open-button
 		this.getChildren().clear();
 		// arrange and add view
