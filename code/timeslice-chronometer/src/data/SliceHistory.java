@@ -29,7 +29,7 @@ public class SliceHistory extends ArrayList<SliceHistoryItem> {
 	 * Add an item to the history
 	 * @param triggerKey Letter (key) of the slice
 	 * @param timeStamp Number of seconds from begin of measurements to slice start
-	*/
+	 */
 	public static void addItem(String triggerKey, String timeStamp) {
 		// transform from slice to sliceHistoryItem
 		SliceHistoryItem shi = new SliceHistoryItem();

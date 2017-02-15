@@ -60,7 +60,7 @@ public class VideoArea extends BorderPane {
 			mediaPlayer.setRate(rate);
 		}
 	}
-	
+
 	/**
 	 * Get the current time of the video (redirects command to mediaplayer)
 	 * @return the time as duration or duration 0 if no video loaded
@@ -71,7 +71,7 @@ public class VideoArea extends BorderPane {
 		}
 		return mediaPlayer.getCurrentTime();
 	}
-	
+
 	/**
 	 * Checks whether a video is loaded or not
 	 * @return true if a video has been loaded

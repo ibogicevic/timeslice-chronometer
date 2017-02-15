@@ -13,7 +13,7 @@ import javafx.util.Duration;
  * @author ivan
  */
 public class SlicesArea extends GridPane {
-	
+
 	private Label videoTimeLabel = new Label("-");
 
 	/**
@@ -27,7 +27,7 @@ public class SlicesArea extends GridPane {
 		// show initial view
 		updateSliceListView();
 	}
-	
+
 	/**
 	 * Reload and show new slice data
 	 */
@@ -67,5 +67,5 @@ public class SlicesArea extends GridPane {
 		};
 		videoTime.start();
 	}
-	
+
 }
