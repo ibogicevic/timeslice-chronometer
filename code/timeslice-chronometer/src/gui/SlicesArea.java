@@ -67,7 +67,6 @@ public class SlicesArea extends GridPane {
 			}
 		};
 		videoTime.start();
-		
 	}
 	
 }

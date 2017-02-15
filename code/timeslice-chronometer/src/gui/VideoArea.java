@@ -122,7 +122,7 @@ public class VideoArea extends BorderPane {
 		media = new Media(url);
 		mediaPlayer = new MediaPlayer(media);
 		mediaView = new MediaView(mediaPlayer);
-		// set default rate
+		// set rate from slider
 		this.setRate(Main.getInstance().infoArea.getSpeedupFactor());
 		// remove open-button
 		this.getChildren().clear();
