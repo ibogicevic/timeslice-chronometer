@@ -8,14 +8,14 @@ import java.util.ArrayList;
  */
 @SuppressWarnings("serial")
 public class SliceHistory extends ArrayList<SliceHistoryItem> {
-	
+
 	/** Internal private instance */
 	private static ArrayList<SliceHistoryItem> history = new ArrayList<SliceHistoryItem>();
-	
+
 	/** Hidden default constructor */
 	private SliceHistory() {
 	}
-	
+
 	/** Get singleton instance */
 	public static synchronized ArrayList<SliceHistoryItem> getInstance() {
 		if (history == null) {
@@ -24,10 +24,12 @@ public class SliceHistory extends ArrayList<SliceHistoryItem> {
 		}
 		return history;
 	}
-	
-	/** Add an item to the history
-	 * TODO: param comments
-	 */
+
+	/**
+	 * Add an item to the history
+	 * @param triggerKey Letter (key) of the slice
+	 * @param timeStamp Number of seconds from begin of measurements to slice start
+	*/
 	public static void addItem(String triggerKey, String timeStamp) {
 		// transform from slice to sliceHistoryItem
 		SliceHistoryItem shi = new SliceHistoryItem();
@@ -36,7 +38,7 @@ public class SliceHistory extends ArrayList<SliceHistoryItem> {
 		// remember item
 		history.add(shi);
 	}
-	
+
 	/** Get the history as csv-text */
 	public static String getCsv() {
 		String csv = "";
