@@ -16,7 +16,6 @@ public class SlicesArea extends GridPane {
 	
 	private Label videoTimeLabel = new Label("-");
 
-	
 	/**
 	 * Initialize Area
 	 */

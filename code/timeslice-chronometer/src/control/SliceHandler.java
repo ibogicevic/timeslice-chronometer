@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import data.Slice;
+import data.SliceHistory;
 import data.SliceMap;
 import gui.Main;
 import javafx.stage.FileChooser;
@@ -58,6 +59,8 @@ public class SliceHandler {
 			currentSlice = lastSlice;
 			if (currentSlice != null) {
 				currentSlice.sliceTimer.start();
+				// protocol start time for slice history
+				SliceHistory.addItem(currentSlice.triggerKey, sumSlice.sliceTimer.getRoundedTime());
 			}
 			// start sum slice timer
 			sumSlice.sliceTimer.start();
@@ -105,9 +108,13 @@ public class SliceHandler {
 		if (sliceToStop != null && (sliceToStop != currentSlice)) {
 			sliceToStop.sliceTimer.stop();
 		}
+		// start slice
 		currentSlice.sliceTimer.start();
+		// handle also sum timer
 		Slice sumSlice = SliceMap.getInstance().get("sum");
 		sumSlice.sliceTimer.start();
+		// protocol start time for slice history
+		SliceHistory.addItem(currentSlice.triggerKey, sumSlice.sliceTimer.getRoundedTime());
 		// increase associated slice counter(s)
 		currentSlice.sliceCounter++;
 		sumSlice.sliceCounter++;
@@ -159,7 +166,9 @@ public class SliceHandler {
 				writer.write(Long.toString(slice.sliceCounter));
 				writer.write(";");				
 			}
-			writer.write(";");
+			writer.write(";\n;\n");
+			// write slice history
+			writer.write(SliceHistory.getCsv());
 			// close writer
 			writer.close();
 		} catch (IOException e) {
