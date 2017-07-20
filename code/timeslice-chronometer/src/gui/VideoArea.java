@@ -154,6 +154,6 @@ public class VideoArea extends BorderPane {
 			File videoFile = fileChooser.showOpenDialog(parentWindow);
 			loadVideo(videoFile);
 		});
-		this.setTop(openButton);
+		this.setBottom(openButton);
 	}
 }
