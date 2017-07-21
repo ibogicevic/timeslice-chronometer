@@ -43,13 +43,13 @@ public class SliceTimer extends AnimationTimer {
 		// calculate time difference
 		long currentTime = getCurrentTimeInMillis();
 		long delta = (currentTime - startTime);
-		// speedupfactor must only be considered if no video is loaded
-		long speedupFactor = 1;
+		// rate must only be considered if no video is loaded
+		long rate = 1;
 		if (!Main.getInstance().videoArea.isVideoLoaded()) {
-			speedupFactor = Math.round(Main.getInstance().infoArea.getSpeedupFactor());
+			rate = Math.round(Main.getInstance().infoArea.getRate());
 		}
 		// add time difference of interval
-		time += speedupFactor * delta;
+		time += rate * delta;
 		startTime += delta;
 		// update timer label (round)
 		if (Main.getInstance() != null && Main.getInstance().slicesArea != null) {
