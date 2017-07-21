@@ -13,7 +13,7 @@ import javafx.scene.layout.GridPane;
  */
 public class InfoArea extends GridPane {
 
-	/** Default speedup rate of measurement */
+	/** Default rate of measurement */
 	final double DEFAULT_RATE = 4;
 	
 	/** Info text that explains the key-press options */
@@ -33,41 +33,41 @@ public class InfoArea extends GridPane {
 			+ "";
 
 	// TODO: This should be moved to a separate ControlArea 
-	/** Slider to control the speed of the measurements */
-	Slider speedupSlider = new Slider();
+	/** Slider to control the rate of the measurements */
+	Slider rateSlider = new Slider();
 
 
 	/**
-	 * Adds a slider control so that the user can speedup the video and the time measurement
+	 * Adds a slider control so that the user can rate the video and the time measurement
 	 */
-	private void addSpeedupSlider() {
+	private void addrateSlider() {
 		// slider settings
-		speedupSlider.setMin(1);
-		speedupSlider.setMax(8);
-		speedupSlider.setValue(DEFAULT_RATE);
-		speedupSlider.setShowTickLabels(true);
-		speedupSlider.setMajorTickUnit(1);
-		speedupSlider.setBlockIncrement(1);
+		rateSlider.setMin(1);
+		rateSlider.setMax(8);
+		rateSlider.setValue(DEFAULT_RATE);
+		rateSlider.setShowTickLabels(true);
+		rateSlider.setMajorTickUnit(1);
+		rateSlider.setBlockIncrement(1);
 		// only allow whole numbers
-		speedupSlider.valueProperty().addListener((obs, oldval, newVal) ->
-		speedupSlider.setValue(Math.round(newVal.doubleValue())));
+		rateSlider.valueProperty().addListener((obs, oldval, newVal) ->
+		rateSlider.setValue(Math.round(newVal.doubleValue())));
 		// change video rate to slider value
-		speedupSlider.valueProperty().addListener(new ChangeListener<Number>() {
+		rateSlider.valueProperty().addListener(new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> value,
 					Number oldValue, Number newValue) {
 				Main.getInstance().videoArea.setRate(newValue.doubleValue());
 			}
 		});
 		// add slider to pane
-		this.add(new Label ("Speedup Factor"), 1, 1);
-		this.add(speedupSlider, 2, 1);
+		this.add(new Label ("Rate"), 1, 1);
+		this.add(rateSlider, 2, 1);
 	}
 
 	/**
-	 * Returns the current speedup factor of the measurement
+	 * Returns the current rate of the measurement
 	 */
-	public double getSpeedupFactor() {
-		return speedupSlider.getValue();
+	public double getRate() {
+		return rateSlider.getValue();
 	}
 
 	/**
@@ -81,8 +81,8 @@ public class InfoArea extends GridPane {
 		// add info text
 		this.add(new Label(INFOTEXT), 1, 2, 2, 1);
 		this.add(new Label(ABOUTTEXT), 1, 3, 2, 1);
-		// add speedup-slider
+		// add rate-slider
 		// TODO: This should be done in a new area (ControlArea) and not in this InfoArea
-		addSpeedupSlider();
+		addrateSlider();
 	}
 }
