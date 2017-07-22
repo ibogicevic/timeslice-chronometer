@@ -13,6 +13,8 @@ import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class VideoArea extends BorderPane {
 
@@ -148,11 +150,19 @@ public class VideoArea extends BorderPane {
 		Button openButton = new Button("Open Video");
 		openButton.setFocusTraversable(false);
 		openButton.setOnAction((event) -> {
+			try{
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.setTitle("Open Video");
 			Stage parentWindow = Main.getInstance().getPrimaryStage();
 			File videoFile = fileChooser.showOpenDialog(parentWindow);
 			loadVideo(videoFile);
+			}catch(Exception e) {
+				final JPanel warning= new JPanel();
+				JOptionPane.showMessageDialog(warning,"Loading video failed,check if your file has the right type or if your video has the right Codec","Warning",JOptionPane.WARNING_MESSAGE);
+				
+				e.printStackTrace();
+			}			
+			
 		});
 		this.setBottom(openButton);
 	}
